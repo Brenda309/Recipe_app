@@ -1,0 +1,10 @@
+<div id="user">
+<p style="color: green"><%= notice %></p>
+<h1 class = users_title>List of all users</h1>
+  <% @users.each do |user| %>
+    <%= render 'partials/user' %>
+    <p>
+      <%= link_to "Show this user", user %>
+    </p>
+  <% end %>
+</div>

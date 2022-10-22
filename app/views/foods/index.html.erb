@@ -1,0 +1,24 @@
+<% if user_signed_in? %>
+  <div class="card mx-3">
+    <div class="card-body">
+      <%= link_to "Add food", new_food_path, class: "btn btn-secondary float-end" %>
+      <h1>Foods</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Food</th>
+            <th scope="col">Measurement unit</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Unit price</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @foods.each do |food| %>
+            <%= render food %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>
