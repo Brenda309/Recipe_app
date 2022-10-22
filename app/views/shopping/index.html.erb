@@ -1,0 +1,33 @@
+<% sum_items = 0
+  total_value = 0 %>
+<div class="card mx-3">
+  <div class="card-body">
+    <h1>Shopping List</h1>
+    
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Food</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @recipe_foods.each do |recipe_food| %>
+          <% if recipe_food.quantity > recipe_food.food.quantity %>
+            <% aux = recipe_food.quantity - recipe_food.food.quantity %>
+            <% sum_items += aux 
+              total_value += aux * recipe_food.food.price %>
+            <tr>
+              <td><%= recipe_food.food.name %></td>
+              <td><%= aux %> <%= recipe_food.food.measurement_unit %></td>
+              <td><%= number_to_currency(recipe_food.food.price * aux, unit: '$', precision: 0) %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <h6>grocery list: <%= sum_items %></h6>
+    <h6>Value of food needed: <%= number_to_currency(total_value, unit: '$', precision: 0) %></h6>
+  </div>
+</div>
