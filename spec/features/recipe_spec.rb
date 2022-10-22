@@ -57,7 +57,17 @@ RSpec.describe 'Recipe detail page', type: :feature do
       it 'should have the "Add" button' do
         sign_in @user
         visit recipe_path(@recipe.id)
-        click_link 'Add ingredient'
+        click_link 'Ad it 'should link to "Add ingredient"' do
+        sign_in @user
+        visit recipe_path(@recipe.id)
+        expect(page).to have_link('Add ingredient')
+      end
+
+      it 'should have a "Remove" button' do
+        sign_in @user
+        visit recipe_path(@recipe.id)
+        expect(page).to have_button('Remove')
+      endd ingredient'
         expect(page).to have_button('Save recipe food')
       end
 
