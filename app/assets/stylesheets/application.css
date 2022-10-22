@@ -13,7 +13,8 @@
  *= require_tree .
  *= require_self
  */
-* {
+
+t* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
