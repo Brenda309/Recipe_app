@@ -21,7 +21,7 @@ class RecipesController < ApplicationController
           flash[:success] = 'Recipe saved successfully'
           redirect_to recipes_url
         else
-          flash.now[:error] = 'Error: Recipe could not be saved'
+          flash.now[:error] = 'Error: Recipe not saved'
           render :new, locals: { recipe: @recipe }
         end
       end
