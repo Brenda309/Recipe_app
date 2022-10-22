@@ -70,8 +70,6 @@ GEM
       public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
     bcrypt (3.1.18)
-    ast (2.4.2)
-    bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.13.0)
       msgpack (~> 1.2)
@@ -238,6 +236,8 @@ GEM
     rubocop-ast (1.21.0)
       parser (>= 3.1.1.0)
     ruby-progressbar (1.11.0)
+    ruby-vips (2.1.4)
+      ffi (~> 1.12)
     rubyzip (2.3.2)
     selenium-webdriver (4.5.0)
       childprocess (>= 0.5, < 5.0)
@@ -299,6 +299,7 @@ DEPENDENCIES
   devise
   factory_bot_rails
   ffi
+  image_processing (~> 1.2)
   importmap-rails
   jbuilder
   pg (~> 1.1)
@@ -310,9 +311,9 @@ DEPENDENCIES
   sprockets-rails
   stimulus-rails
   turbo-rails
+  tzinfo-data
   web-console
   webdrivers
-  zinfo-data
 
 RUBY VERSION
    ruby 3.1.2p20

@@ -2,17 +2,17 @@ class FoodsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :set_food, only: %i[edit destroy]
 
-  # GET 
+  # GET
   def index
     @foods = Food.where(user: current_user)
   end
 
-  # GET 
+  # GET
   def new
     @food = Food.new
   end
 
-  # POST 
+  # POST
   def create
     @food = Food.new(food_params)
     @food.user = current_user
@@ -28,7 +28,7 @@ class FoodsController < ApplicationController
     end
   end
 
-  # DELETE 
+  # DELETE
   def destroy
     @food.destroy
     respond_to do |format|
