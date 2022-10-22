@@ -2,24 +2,24 @@ class FoodsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :set_food, only: %i[edit destroy]
 
-  # GET /foods or /foods.json
+  # GET
   def index
     @foods = Food.where(user: current_user)
   end
 
-  # GET /foods/new
+  # GET
   def new
     @food = Food.new
   end
 
-  # POST /foods or /foods.json
+  # POST
   def create
     @food = Food.new(food_params)
     @food.user = current_user
 
     respond_to do |format|
       if @food.save
-        format.html { redirect_to foods_url, notice: 'Food was successfully created.' }
+        format.html { redirect_to foods_url, notice: 'Food was created. successfully ' }
         format.json { render :show, status: :created, location: @food }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -28,12 +28,11 @@ class FoodsController < ApplicationController
     end
   end
 
-  # DELETE /foods/1 or /foods/1.json
+  # DELETE
   def destroy
     @food.destroy
-
     respond_to do |format|
-      format.html { redirect_to foods_url, notice: 'Food was successfully destroyed.' }
+      format.html { redirect_to foods_url, notice: 'Food was destroyed successfully.' }
       format.json { head :no_content }
     end
   end

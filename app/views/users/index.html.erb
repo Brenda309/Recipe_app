@@ -2,7 +2,7 @@
 <h1>List of all users</h1>
 <div id="users">
   <% @users.each do |user| %>
-    <%= render 'partials/users' %>
+    <%= render 'partials/user' %>
     <p>
       <%= link_to "Show this user", user %>
     </p>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RecipeApp</title>
+    <title>Recipe_App</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,7 +12,7 @@
   <body>
   <section class="home">
   <div>
-  <h1 class="page-title">Recipe App</h1>
+   <%= link_to user_signed_in? ? current_user.name : 'Recipe app', root_path, class: "text-decoration-none p-3" %>
   </div>
   <div class = "nav_buttons">
   <%= render 'partials/navbar' %>

@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
-
   attr_accessor :to_key
+
   before_action :set_user, only: %i[show edit update destroy]
-
-
 
   # GET /users or /users.json
   def index
@@ -18,7 +16,6 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  
   # DELETE /users/1 or /users/1.json
   def destroy
     @user.destroy

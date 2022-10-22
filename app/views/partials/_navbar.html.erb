@@ -3,8 +3,8 @@
       <% if user_signed_in? %>
           <%= link_to 'your Recipes ', recipes_path, class:"navbar-button" %>
           <%= link_to 'Food list', foods_path, class:"navbar-button" %>
-          <%= link_to 'Public recipes',  recipes_path,class:"navbar-button" %>
-          <%= link_to 'General shopping list', recipes_path,class:"navbar-button" %> 
+          <%= link_to 'Public recipes',  public_recipes_path,class:"navbar-button" %>
+          <%= link_to 'General shopping list', general_shopping_list_path,class:"navbar-button" %> 
            <%= button_to 'Sign out', destroy_user_session_path, method: :delete, class:"button" %>
            
       <% else %>
