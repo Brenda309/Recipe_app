@@ -7,12 +7,12 @@
   display: flex;
   border-bottom: 2px solid rgb(82, 85, 82);
   justify-content: space-between;
-  background-attachment: grey;
 }
+
 .nav {
   display: flex;
   font-size: 20px;
-   margin: 10px;
+  margin: 10px;
   list-style: none;
 }
 
@@ -60,14 +60,14 @@ tr:nth-child(even) {
   margin: 50px;
 }
 
-#users{
+#users {
   align-items: center;
 }
 
-.form-group{
-margin:30px
+.form-group {
+  margin: 30px;
 }
 
-.actions{
-  margin:30px
+.actions {
+  margin: 30px;
 }
