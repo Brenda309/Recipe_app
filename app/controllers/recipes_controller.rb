@@ -1,49 +1,39 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_user!
   def index
-    @recipes = Recipe.where(user_id: current_user.id)
+    @recipes = Recipe.all.includes([:user])
+
+
+  def show
+    @recipe = Recipe.find(params[:id])
+    @recipefoods = Recipefood.where(recipe_id: params[:id])
   end
 
   def new
     @recipe = Recipe.new
   end
 
-  def show
-    @recipe = Recipe.find(params[:id])
-  end
-
   def create
-    @recipe = Recipe.new(strong_params)
+    @recipe = Recipe.new(params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description))
+
     @recipe.user = current_user
-    respond_to do |format|
-      format.html do
-        if @recipe.save
-          flash[:success] = 'Recipe saved successfully'
-          redirect_to recipes_url
-        else
-          flash.now[:error] = 'Error: Recipe could not be saved'
-          render :new, locals: { recipe: @recipe }
-        end
-      end
+
+    if @recipe.save
+      flash[:success] = 'Recipe saved successfully'
+      redirect_to recipes_path
+    else
+      flash.now[:error] = 'Error: Recipe could not be saved'
     end
   end
 
   def destroy
-    @recipe = Recipe.find(params[:id])
-    @recipe.destroy
-    flash[:success] = 'The recipe was successfully deleted.'
-    redirect_to recipes_path
-  end
+    recipe = Recipe.find(params[:id])
+    recipe.destroy
 
-  def toggle_public
-    @recipe = Recipe.find(params[:id])
-    @recipe.toggle(:public)
-    @recipe.save
-  end
-
-  private
-
-  def strong_params
-    params.require(:recipe).permit(:user_id, :name, :description, :preparation_time, :cooking_time, :public)
+    if recipe.destroy
+      flash[:success] = 'Recipe deleted successfully'
+      redirect_to recipes_path
+    else
+      flash.now[:error] = 'Error: Recipe could not be deleted'
+    end
   end
 end
