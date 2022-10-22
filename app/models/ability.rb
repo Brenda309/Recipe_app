@@ -2,14 +2,19 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    # Define abilities for the user here. For example:
+    #
+    #   return unless user.present?
+    #   can :read, :all
+    #   return unless user.admin?
+    #   can :manage, :all
     return unless user.present?
 
     can :read, :all
-    can :manage, Recipe, user: user
-    can :manage, Food, user: user
-    can :manage, RecipeFood, user: user
-    return unless user.role == 'admin'
-    can :manage, :all
+    can :manage, Recipe, user_id: user.id
+    #   can :manage, Food, author: user
+
+    #
     # The first argument to `can` is the action you are giving the user
     # permission to do.
     # If you pass :manage it will apply to every action. Other common actions
@@ -23,9 +28,9 @@ class Ability
     # objects.
     # For example, here the user can only update published articles.
     #
-    #   can :update, Article, :published => true
+    #   can :update, Article, published: true
     #
     # See the wiki for details:
-    # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
+    # https://github.com/CanCanCommunity/cancancan/blob/develop/docs/define_check_abilities.md
   end
 end
