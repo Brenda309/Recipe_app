@@ -1,0 +1,32 @@
+
+<h3>Recipe #<%= @recipe.id %>
+<div>Public? <%= @recipe.public %></div>
+<h4>Name: <%= @recipe.name %></h4>
+<h4>Description: <%= @recipe.description %></h4>
+<h4>Preparation time: <%= @recipe.preparation_time %> hours</h4>
+<h4>Cooking time: <%= @recipe.cooking_time %> hours</h4>
+<h4>Steps go here...</h4>
+<% if can? :destroy, @recipe %>
+<%= link_to "Generate shopping list", general_shopping_list_path, class: "btn btn-secondary" %>
+<%= link_to "Add ingredient", new_recipe_recipe_food_path(@recipe.id), class: "btn btn-secondary" %>
+<% end %>
+<table>
+  <tr>
+    <th>Food</th>
+    <th>Quantity</th>
+    <th>Value</th>
+    <th>Actions</th>
+   </tr>
+   <% RecipeFood.includes(:food).where(recipe_id: @recipe.id).each do | recipe_food | %>
+    <tr>
+   <th><%= recipe_food.food.name %></th>
+   <th><%= recipe_food.quantity %> <%= recipe_food.food.measurement_unit %></th>
+   <th>$<%= recipe_food.food.price * recipe_food.quantity %></th>
+   <% if can? :destroy, @recipe %>
+   <th><%= button_to 'Remove', recipe_recipe_food_path(@recipe.id), method: :delete, class: "btn btn-danger btn-sm" %></th>
+   <% end %>
+   </tr>
+   <% end %>
+</table>
+
+

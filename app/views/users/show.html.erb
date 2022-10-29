@@ -1,0 +1,6 @@
+<p style="color: green"><%= notice %></p>
+<%= render 'partials/users' %>
+<div>
+  <%= link_to "Back to users", users_path %>
+  <%= button_to "Destroy this user", @user, method: :delete, class: "btn btn-danger" %>
+</div>

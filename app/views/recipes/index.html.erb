@@ -1,0 +1,13 @@
+<h1>Recipes</h1>
+<%= link_to "Add recipe", new_recipe_path, class: "btn btn-secondary float-end" %>
+<% @recipes.each do |recipe| %>
+<div class="recipe">
+<a href="recipes/<%= recipe.id %>">Recipe #<%= recipe.id %></a>
+<div>Name: <%= recipe.name %></div>
+<div>Description: <%= recipe.description %></div>
+<div>Public? <%= recipe.public %></div>
+<% if can? :destroy, recipe %>
+    <%= button_to "REMOVE", "/recipes/#{recipe.id}", method: :delete %>
+<% end %>
+</div>
+<% end %>
